@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.less"],"names":[],"mappings":"AAGA,QACE,UAAA,CACA","file":"style.6e09afcc.css","sourceRoot":"..","sourcesContent":["@width: 10px;\n@height: @width + 10px;\n\n#header {\n  width: @width;\n  height: @height;\n}\n\n"]}
