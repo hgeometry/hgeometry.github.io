@@ -14,7 +14,7 @@ jobs:
 
     - name: Install parcel
       run: |
-        npm install -g parcel
+        sudo npm install -g parcel
 
     - name: Build site
       run: |
