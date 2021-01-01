@@ -4,11 +4,20 @@
 @grey  : #E7E9ED;
 @green : #4BC0C0;
 @red   : #FF6384;
-@blue  : #36A2EB;
+@blue  : #2374AB;
 @yellow: #FFCE56;
 
-@overlap: 50px;
+@overlap    : 85px;
+@article_gap: 20px;
 
+@small-screen-query: ~"only screen and (max-width: 978px)";
+@tablet-query: ~"only screen and (max-width: 768px)";
+@mobile-query: ~"only screen and (max-width: 500px)";
+
+
+* {
+  box-sizing:border-box;
+}
 body {
   margin     : 0;
   font-size  : 18px;
@@ -22,19 +31,21 @@ h1 {
 }
 
 h2 {
-  margin       : 1em 0;
-  font-size    : 22px;
+  margin    : 1em 0;
+  font-size : 22px;
   margin-top: 0;
 }
+
 hr {
-  width: 50%;
+  width           : 50%;
   background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid @grey;
-  margin: 40px auto;
+  border          : 0;
+  border-bottom   : 1px solid @grey;
+  margin          : 40px auto;
 }
+
 header {
-  background    : #2374AB;
+  background    : @blue;
   color         : @white;
   padding-top   : 40px;
   padding-bottom: 20px + @overlap;
@@ -76,39 +87,89 @@ header {
     }
   }
 }
+
 main {
   margin-bottom: 4em;
 }
 
 article {
+  clear: both;
+  h2 {
+    text-align: center;
+  }
+  position        : relative;
+  max-width       : 800px;
+  margin          : 0 auto;
+  box-shadow      : 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding         : 30px 30px;
+  background-color: @white;
+  margin-bottom   : @article_gap;
+
+  @media @tablet-query {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
   &:first-of-type {
-    top: -@overlap;
+    top          : -@overlap;
+    margin-bottom: @article_gap - @overlap;
+
     a {
       // text-decoration: none;
       color: black;
-      &:visited {
-      }
+
+      &:visited {}
+
       &:hover {
         text-decoration: underline;
       }
     }
   }
 
-  position        : relative;
-  max-width       : 800px;
-  margin          : 0 auto;
-  box-shadow      : 0 1px 2px rgba(0, 0, 0, 0.2);
-  padding         : 30px 60px;
-  background-color: @white;
-
   table {
-    margin-top: 1em;
-    margin-left: 1em;
+    margin: 1em;
+
     td {
       padding-right: 1em;
     }
   }
+
+  &.feature {
+    .feature-text {
+      width: 45%;
+    }
+    .feature-video {
+      width: 55%;
+    }
+    .feature-text, .feature-video {
+      &.pull-right {
+        float:right;
+        padding-left: 0.5em;
+      }
+      &.pull-left {
+        float:left;
+        padding-right: 0.5em;
+      }
+      @media @tablet-query {
+        width: 100%;
+        float: none;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 !important;
+      }
+    }
+  }
 }
+
+video {
+  width: 100%;
+  border: 1px dashed @grey;
+}
+
+
+
+
 
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out
