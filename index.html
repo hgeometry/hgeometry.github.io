@@ -1,15 +1,153 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>HGeometry</title>
-    <link href="./style.less" rel="stylesheet"/>
-  </head>
-  <body>
-    <ul>
-      <li>Header</li>
-      <li>Sub-title</li>
-      <li>Bread text</li>
-      <li>Examples</li>
-    </ul>
-  </body>
-</html>
 
+<head>
+  <title>HGeometry</title>
+  <link href="./style.less" rel="stylesheet" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <a href="https://github.com/noinia/hgeometry" class="github-corner" aria-label="View source on GitHub"><svg width="80"
+      height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: fixed; top: 0; border: 0; right: 0;"
+      aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path
+        d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+        fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path
+        d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+        fill="currentColor" class="octo-body"></path>
+    </svg>
+  </a>
+
+  <main>
+    <header>
+      <h1>HGeometry</h1>
+      <h2>Computational Geometry in Haskell</h2>
+
+      <div class="btn">
+        <a href="https://github.com/noinia/hgeometry">GitHub</a>
+        <a href="https://discord.gg/HQwbD9jWqg">Discord</a>
+        <a href="https://hackage.haskell.org/package/hgeometry">API Reference</a>
+      </div>
+    </header>
+    <article>
+      <b>HGeometry</b> is a library for computing with geometric objects in Haskell. It defines basic geometric types
+      and primitives, and implements many algorithms, including:
+
+      <table>
+        <tr>
+          <td>\( O(n \log n) \)</td>
+          <td><a href="https://en.wikipedia.org/wiki/Convex_hull">Convex Hull.</a></td>
+        </tr>
+        <tr>
+          <td>\( O(n) \)</td>
+          <td>
+            <a href="https://en.wikipedia.org/wiki/Smallest-circle_problem">Smallest enclosing disk.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>\( O(n \log n) \)</td>
+          <td>
+            <a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Douglas Peucker
+            polyline line simplification.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>\( O(n \log n) \)</td>
+          <td>
+            <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay triangulation.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>\( O(n \log n) \)</td>
+          <td><a href="https://en.wikipedia.org/wiki/Euclidean_minimum_spanning_tree">Euclidean Minimum
+            Spanning Tree.</a></td>
+        </tr>
+        <tr>
+          <td>\( O(1/\varepsilon^dn\log n) \)</td>
+          <td><a
+            href="https://en.wikipedia.org/wiki/Well-separated_pair_decomposition">Well-Separated pair
+            decomposition.</a></td>
+        </tr>
+        <tr>
+          <td>\( O(\log n) \)</td>
+          <td><a href=https://en.wikipedia.org/wiki/Extreme_point">Extremal points and tangents on/to a convex polygon.</a></td>
+        </tr>
+        <tr>
+          <td>\( O(n+m) \)</td>
+          <td><a href="https://en.wikipedia.org/wiki/Minkowski_addition">Minkowski sum.</a></td>
+        </tr>
+        <tr>
+          <td>\( O(n\log n) \)</td>
+          <td><a href="https://en.wikipedia.org/wiki/Closest_pair_of_points_problem">Closest pair among a
+            set of points.</a></td>
+        </tr>
+        <tr>
+          <td>\( O(nm) \)</td>
+          <td><a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance">Fréchet distance.</a></td>
+        </tr>
+        <tr>
+          <td>\( O(n) \)</td>
+          <td>
+            <a href="https://en.wikipedia.org/wiki/Shortest_path_problem">Single-source shortest path tree for simple polygons.</a>
+          </td>
+        </tr>
+      </table>
+
+      <hr />
+
+      <p>
+        When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+        \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}\]
+      </p>
+      <h2>Examples</h2>
+    </article>
+    <article>
+      Second article
+    </article>
+  </main>
+
+  <!--
+  <ul>
+    <li>Header</li>
+    <li>Sub-title</li>
+    <li>Bread text</li>
+    <li>
+      <b>Examples:</b>
+      <dl>
+        <dt>Polygon intersection:</dt>
+        <dd>How?</dd>
+        <dt>Single-source shortest path:</dt>
+        <dd>How?</dd>
+        <dt>Point visibility polygon:</dt>
+        <dd>How?</dd>
+        <dt>Edge visibility polygon:</dt>
+        <dd>How?</dd>
+        <dt>Convex hull:</dt>
+        <dd>How?</dd>
+        <dt>Smallest enclosing disk:</dt>
+        <dd>How?</dd>
+        <dt>Delaunay triangulation:</dt>
+        <dd>How?</dd>
+        <dt>Euclidean Minimum SPanning Tree:</dt>
+        <dd>How?</dd>
+        <dt>Extremes and tangents for convex polygons:</dt>
+        <dd>How?</dd>
+        <dt>Minkowshi sums:</dt>
+        <dd>How?</dd>
+        <dt>Closest pair:</dt>
+        <dd>How?</dd>
+        <dt>Red Blue Separator:</dt>
+        <dd>How?</dd>
+  </ul>
+  </li>
+  </ul> -->
+
+  <script src="./instantclick.min.js" data-no-instant></script>
+  <script data-no-instant>InstantClick.init();</script>
+</body>
+
+</html>
