@@ -4,8 +4,15 @@
 <head>
   <title>HGeometry</title>
   <link href="./style.less" rel="stylesheet" />
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
 </head>
 
 <body>
@@ -37,90 +44,90 @@
       <b>HGeometry</b> is a library for computing with geometric objects in Haskell. It defines basic geometric types
       and primitives, and implements many algorithms, including:
 
-      <table>
-        <tr>
-          <td>\( O(n \log n) \)</td>
-          <td><a href="https://en.wikipedia.org/wiki/Convex_hull">Convex Hull.</a></td>
-        </tr>
-        <tr>
-          <td>\( O(n) \)</td>
-          <td>
-            <a href="https://en.wikipedia.org/wiki/Smallest-circle_problem">Smallest enclosing disk.</a>
-          </td>
-        </tr>
-        <tr>
-          <td>\( O(n \log n) \)</td>
-          <td>
-            <a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Douglas Peucker
-              polyline line simplification.</a>
-          </td>
-        </tr>
-        <tr>
-          <td>\( O(n \log n) \)</td>
-          <td>
-            <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay triangulation.</a>
-          </td>
-        </tr>
-        <tr>
-          <td>\( O(n \log n) \)</td>
-          <td><a href="https://en.wikipedia.org/wiki/Euclidean_minimum_spanning_tree">Euclidean Minimum
-              Spanning Tree.</a></td>
-        </tr>
-        <tr>
-          <td>\( O(1/\varepsilon^dn\log n) \)</td>
-          <td><a href="https://en.wikipedia.org/wiki/Well-separated_pair_decomposition">Well-Separated pair
-              decomposition.</a></td>
-        </tr>
-        <tr>
-          <td>\( O(\log n) \)</td>
-          <td><a href="https://en.wikipedia.org/wiki/Extreme_point">Extremal points and tangents on/to a convex
-              polygon.</a></td>
-        </tr>
-        <tr>
-          <td>\( O(n+m) \)</td>
-          <td><a href="https://en.wikipedia.org/wiki/Minkowski_addition">Minkowski sum.</a></td>
-        </tr>
-        <tr>
-          <td>\( O(n\log n) \)</td>
-          <td><a href="https://en.wikipedia.org/wiki/Closest_pair_of_points_problem">Closest pair among a
-              set of points.</a></td>
-        </tr>
-        <tr>
-          <td>\( O(nm) \)</td>
-          <td><a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance">Fréchet distance.</a></td>
-        </tr>
-        <tr>
-          <td>\( O(n) \)</td>
-          <td>
-            <a href="https://en.wikipedia.org/wiki/Shortest_path_problem">Single-source shortest path tree for simple
-              polygons.</a>
-          </td>
-        </tr>
-      </table>
+      <div id="algo-list">
+        <div>
+          \( O(n \log n) \)
+        </div>
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Convex_hull">Convex Hull.</a>
+        </div>
 
-      Scroll down to see animated illustrations of some of the algorithms.
+        <div>
+          \( O(n) \)
+        </div>
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Smallest-circle_problem">Smallest enclosing disk.</a>
+        </div>
+
+        <div> \( O(n \log n) \) </div>
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Douglas Peucker's
+            algorithm.</a>
+        </div>
+
+        <div> \( O(n \log n) \) </div>
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Extreme_point">Convex extremes and tangents.</a>
+        </div>
+
+        <div>\( O(n \log n) \)</div>
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay triangulation.</a>
+        </div>
+
+        <div>\( O(n \log n) \)</div>
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Euclidean_minimum_spanning_tree">
+            Euclidean Minimum Spanning Tree.
+          </a>
+        </div>
+
+        <div>\( O(1/\varepsilon^dn\log n) \)</div>
+        <div><a href="https://en.wikipedia.org/wiki/Well-separated_pair_decomposition">Well-Separated pair
+            decomposition.</a></div>
+
+        <div>\( O(n+m) \)</div>
+        <div><a href="https://en.wikipedia.org/wiki/Minkowski_addition">Minkowski sum.</a></div>
+
+        <div>\( O(n\log n) \)</div>
+        <div><a href="https://en.wikipedia.org/wiki/Closest_pair_of_points_problem">Closest pair of points.</a></div>
+
+        <div>\( O(nm) \)</div>
+        <div><a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance">Fréchet distance.</a></div>
+
+        <div>\( O(n) \)</div>
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Shortest_path_problem">Single-source shortest path tree.</a>
+        </div>
+      </div>
+
+      Geometry is inherently graphical and the rest of this website is
+      devoted to illustrations and animations that highlight how the various algorithms work.
     </article>
     <article class="feature">
       <h2>\( O(n) \) Single-Source Shortest Path</h2>
-      <div class="feature-text pull-left">
-        <p>Descriptions</p>
+
+      <div>
+        <p></p>Descriptions</p>
         <a href="">API</a>
         <a href="">Source</a>
       </div>
-      <div class="feature-video pull-right">
+      <div>
         <video mute loop controls>
+          <source src="./assets/multi.mp4" type="video/mp4">
           <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/multi.mp4" type="video/mp4">
         </video>
       </div>
-      <div style="clear:both;"></div>
     </article>
+
     <article class="feature">
       <h2>\( O(n) \) Inflate</h2>
-      <div class="feature-text pull-right">
+      <div>
         Test
       </div>
-      <div class="feature-video pull-left">
+      <div>
         <video mute loop controls>
+          <source src="./assets/multi.mp4" type="video/mp4">
           <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/multi.mp4" type="video/mp4">
         </video>
       </div>
