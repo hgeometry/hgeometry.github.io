@@ -101,16 +101,25 @@
         </div>
       </div>
 
-      Geometry is inherently graphical and the rest of this website is
+      Geometry is inherently visual and the rest of this website is
       devoted to illustrations and animations that highlight how the various algorithms work.
     </article>
     <article class="feature">
       <h2>\( O(n) \) Single-Source Shortest Path</h2>
 
       <div>
-        <p></p>Descriptions</p>
-        <a href="">API</a>
-        <a href="">Source</a>
+        <p>
+          Finding the shortest path from a specific corner to all other corners
+          is a key step in many other algorithms. It's used for computing visibility
+          polygons, inflated polygons, and minimum-link distances.
+        </p>
+        <p>
+          The animation shows the shortest internal path from a green point on the side of a polygon
+          to all other corner points.
+        </p>
+        <a href="">API Reference</a><br/>
+        <a href="">Animation source</a><br/>
+        DOI: 10.1007/BF01840360<br/>
       </div>
       <div>
         <video mute loop controls>
@@ -123,12 +132,18 @@
     <article class="feature">
       <h2>\( O(n) \) Inflate</h2>
       <div>
-        Test
+        <p>
+          Polygons can be inflated like a balloon. A partially inflated polygon is smaller than the original
+          polygon and the longest path from the starting point to any corner is fixed at a given length.
+          This property gives a wave-like propagation effect when the longest length is increased.
+        </p>
+        <a href="">API Reference</a><br/>
+        <a href="">Animation source</a><br/>
       </div>
       <div>
         <video mute loop controls>
-          <source src="./assets/multi.mp4" type="video/mp4">
-          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/multi.mp4" type="video/mp4">
+          <source src="./assets/inflate.mp4" type="video/mp4">
+          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/inflate.mp4" type="video/mp4">
         </video>
       </div>
       <div style="clear:both;"></div>
