@@ -158,11 +158,15 @@ article {
 
     @media not (orientation: portrait) {
       &:nth-child(even) {
-        direction: rtl;
-        * {
-          direction: ltr;
+        div:nth-of-type(1) {
+          grid-row: 2;
+          grid-column: 2;
+          margin-left: 1em;
+          margin-right: 0;
         }
-        div:nth-child(even) {
+        div:nth-of-type(2) {
+          grid-row: 2;
+          grid-column: 1;
           margin-left: 1em;
           margin-right: 0;
         }
