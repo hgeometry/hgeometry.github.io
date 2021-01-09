@@ -110,8 +110,6 @@ main {
 }
 
 article {
-  clear: both;
-
   h2 {
     text-align: center;
   }
@@ -216,7 +214,19 @@ video {
   }
 }
 
+footer {
+  position        : relative;
+  max-width       : 800px;
+  margin          : 0 auto;
+  padding         : 30px 30px;
+  margin-bottom   : @article_gap;
 
+  @media (orientation: portrait) {
+    max-width    : 100%;
+    padding-left : 20px;
+    padding-right: 20px;
+  }
+}
 
 
 .github-corner:hover .octo-arm {
