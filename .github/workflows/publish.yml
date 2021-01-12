@@ -27,8 +27,16 @@ jobs:
         BRANCH: live # The branch the action should deploy to.
         FOLDER: dist # The folder the action should deploy.
 
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
     - name: BackBlaze deplay
-      uses: jakejarvis/backblaze-b2-action@master
+      run: |
+        pip install --quiet --no-cache-dir b2==2.1.0
+        b2 authorize-account ${B2_APPKEY_ID} ${B2_APPKEY}
+        b2 sync --delete --replaceNewer ${SOURCE_DIR} b2://hgeometry
+        b2 clear-account
       env:
         SOURCE_DIR: './assets'
         B2_BUCKET: ${{ secrets.B2_BUCKET }}
