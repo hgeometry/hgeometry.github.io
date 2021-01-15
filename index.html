@@ -111,8 +111,9 @@
       <div>
         <p>
           Polygons can be inflated like a balloon. A partially inflated polygon is smaller than the original
-          polygon and the longest path from the starting point to any corner is fixed at a given length.
-          This property gives a wave-like propagation effect when the longest length is increased.
+          polygon and have the property that each point on the wavefront are equidistant to the point of origin.
+          Increasing the distance to the wavefront gives the impression of the polygon spreading like
+          water in a mold.
         </p>
       </div>
       <div>
@@ -202,12 +203,17 @@
       <h2>\( O((n+k) \log n) \) Line segment intersection</h2>
       <div>
         <p>
-          See the <a href="https://en.wikipedia.org/wiki/Bentley%E2%80%93Ottmann_algorithm">Bentley–Ottmann
-            algorithm</a>
-          on Wikipedia for more information.
+          Using a brute-force search, finding intersections of \(n\) lines would take \(O(n^2)\) time.
+          Since we often want to find intersections, the Bentley-Ottmann algorithm which significantly
+          improved the efficiency.
         </p>
         <p>
-
+          When is this used? Well, to give good error messages, HGeometry will check polygons
+          for self-intersections immediately when they're created. This leads to mistakes
+          being spotted sooner rather than later.
+        </p>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Bentley%E2%80%93Ottmann_algorithm">Wikipedia article</a>
         </p>
       </div>
       <div>
