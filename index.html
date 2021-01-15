@@ -47,12 +47,11 @@
       and primitives, and implements many algorithms, including:
 
       <div id="algo-list">
-        <div>
-          \( O(n \log n) \)
-        </div>
-        <div>
-          <a href="https://en.wikipedia.org/wiki/Convex_hull">Convex Hull.</a>
-        </div>
+        <div>\( O(n \log n) \)</div>
+        <div><a href="#convex-hull">Convex Hull.</a></div>
+
+        <div>\( O(k) \)</div>
+        <div><a href="#fast-visibility">Visibility polygon.</a></div>
 
         <div>
           \( O(n) \)
@@ -92,21 +91,136 @@
         <div><a href="https://en.wikipedia.org/wiki/Minkowski_addition">Minkowski sum.</a></div>
 
         <div>\( O(n\log n) \)</div>
-        <div><a href="https://en.wikipedia.org/wiki/Closest_pair_of_points_problem">Closest pair of points.</a></div>
+        <div><a href="#closest-pair">Closest pair of points.</a></div>
 
         <div>\( O(nm) \)</div>
         <div><a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance">Fréchet distance.</a></div>
 
         <div>\( O(n) \)</div>
         <div>
-          <a href="https://en.wikipedia.org/wiki/Shortest_path_problem">Single-source shortest path tree.</a>
+          <a href="#shortest-path">Single-source shortest path tree.</a>
         </div>
       </div>
 
       Geometry is inherently visual and the rest of this website is
       devoted to illustrations and animations that highlight how the various algorithms work.
     </article>
-    <article class="feature">
+
+    <article class="feature" id="inflate">
+      <h2>\( O(n) \) Inflate</h2>
+      <div>
+        <p>
+          Polygons can be inflated like a balloon. A partially inflated polygon is smaller than the original
+          polygon and the longest path from the starting point to any corner is fixed at a given length.
+          This property gives a wave-like propagation effect when the longest length is increased.
+        </p>
+      </div>
+      <div>
+        <video mute loop controls>
+          <source src="./assets/inflate.mp4" type="video/mp4">
+          <source src="https://f002.backblazeb2.com/file/hgeometry/inflate.mp4" type="video/mp4">
+          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/inflate.mp4" type="video/mp4">
+        </video>
+      </div>
+    </article>
+
+    <article class="feature" id="fast-visibility">
+      <h2>\( O(k) \) Visibility</h2>
+      <div>
+        <p>
+          Finding the visible parts of a polygon from a given point is a cornerstone in
+          computational geometry. There exists many algorithms but one is of special interest.
+          This algorithm is output-sensitive, meaning that the runtime is dependent not on
+          the size of the input polygon but on the size of the visible area.
+        </p>
+        <p>
+          The animation shows how a polygon is first triangulated, then triangles are processed
+          and marked in grey while the visibility polygon is outlined in green. The number of
+          processed triangles is limited to those that intersect the final visibility polygon.
+        </p>
+      </div>
+      <div>
+        <video mute loop controls>
+          <source src="./assets/fast_visibility.mp4" type="video/mp4">
+          <source src="https://f002.backblazeb2.com/file/hgeometry/fast_visibility.mp4" type="video/mp4">
+          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/fast_visibility.mp4"
+            type="video/mp4">
+        </video>
+      </div>
+    </article>
+
+    <article class="feature" id="convex-hull">
+      <h2>\( O(n \log n) \) Convex Hull</h2>
+      <div>
+        <p>
+          A convex hull of a set of points is the smallest convex polygon that contains it.
+          You can think of it as a rubber band that stretches around a collection of points.
+        </p>
+        <p>
+          So, how is this useful? Well, there are many fast algorithms that only work on convex
+          polygons. For example, there's a fast algorithm for finding the two corners that are
+          furthest away from each other. By first finding the convex hull, we can then use the
+          fast algorithm to find the two extreme points in the set.
+        </p>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Convex_hull">Wikipedia article.</a>
+        </p>
+      </div>
+      <div>
+        <video mute loop controls>
+          <source src="./assets/convexhull.mp4" type="video/mp4">
+          <source src="https://f002.backblazeb2.com/file/hgeometry/convexhull.mp4" type="video/mp4">
+          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/convexhull.mp4"
+            type="video/mp4">
+        </video>
+      </div>
+    </article>
+
+    <article class="feature" id="closest-pair">
+      <h2>\( O(n \log n) \) Closest Pair</h2>
+      <div>
+        <p>
+          The closest pair problem for points in the Euclidean plane was among the first geometric
+          problems that were treated at the origins of the systematic study of the computational
+          complexity of geometric algorithms.
+        </p>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Closest_pair_of_points_problem">Wikipedia article.</a>
+        </p>
+      </div>
+      <div>
+        <video mute loop controls>
+          <source src="./assets/closestpair.mp4" type="video/mp4">
+          <source src="https://f002.backblazeb2.com/file/hgeometry/closestpair.mp4" type="video/mp4">
+          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/closestpair.mp4"
+            type="video/mp4">
+        </video>
+      </div>
+    </article>
+
+    <article class="feature" id="bentleyottmann">
+      <h2>\( O((n+k) \log n) \) Line segment intersection</h2>
+      <div>
+        <p>
+          See the <a href="https://en.wikipedia.org/wiki/Bentley%E2%80%93Ottmann_algorithm">Bentley–Ottmann
+            algorithm</a>
+          on Wikipedia for more information.
+        </p>
+        <p>
+
+        </p>
+      </div>
+      <div>
+        <video mute loop controls>
+          <source src="./assets/bentleyottmann.mp4" type="video/mp4">
+          <source src="https://f002.backblazeb2.com/file/hgeometry/bentleyottmann.mp4" type="video/mp4">
+          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/bentleyottmann.mp4"
+            type="video/mp4">
+        </video>
+      </div>
+    </article>
+
+    <article class="feature" id="shortest-path">
       <h2>\( O(n) \) Single-Source Shortest Path</h2>
 
       <div>
@@ -130,91 +244,6 @@
       </div>
     </article>
 
-    <article class="feature">
-      <h2>\( O(n) \) Inflate</h2>
-      <div>
-        <p>
-          Polygons can be inflated like a balloon. A partially inflated polygon is smaller than the original
-          polygon and the longest path from the starting point to any corner is fixed at a given length.
-          This property gives a wave-like propagation effect when the longest length is increased.
-        </p>
-      </div>
-      <div>
-        <video mute loop controls>
-          <source src="./assets/inflate.mp4" type="video/mp4">
-          <source src="https://f002.backblazeb2.com/file/hgeometry/inflate.mp4" type="video/mp4">
-          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/inflate.mp4" type="video/mp4">
-        </video>
-      </div>
-    </article>
-
-    <article class="feature">
-      <h2>\( O(n \log n) \) Convex Hull</h2>
-      <div>
-        <p>
-          A convex hull of a set of points is the smallest convex polygon that contains it.
-          You can think of it as a rubber band that stretches around a collection of points.
-        </p>
-        <p>
-          So, how is this useful? Well, there are many fast algorithms that only work on convex
-          polygons. For example, there's a fast algorithm for finding the two corners that are
-          furthest away from each other. By first finding the convex hull, we can then use the
-          fast algorithm to find the two extreme points in the set.
-        </p>
-      </div>
-      <div>
-        <video mute loop controls>
-          <source src="./assets/convexhull.mp4" type="video/mp4">
-          <source src="https://f002.backblazeb2.com/file/hgeometry/convexhull.mp4" type="video/mp4">
-          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/convexhull.mp4"
-            type="video/mp4">
-        </video>
-      </div>
-    </article>
-
-    <article class="feature">
-      <h2>\( O(n \log n) \) Closest Pair</h2>
-      <div>
-        <p>
-          The closest pair problem for points in the Euclidean plane was among the first geometric
-          problems that were treated at the origins of the systematic study of the computational
-          complexity of geometric algorithms.
-        </p>
-        <p>
-
-        </p>
-      </div>
-      <div>
-        <video mute loop controls>
-          <source src="./assets/closestpair.mp4" type="video/mp4">
-          <source src="https://f002.backblazeb2.com/file/hgeometry/closestpair.mp4" type="video/mp4">
-          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/closestpair.mp4"
-            type="video/mp4">
-        </video>
-      </div>
-    </article>
-
-    <article class="feature">
-      <h2>\( O((n+k) \log n) \) Line segment intersection</h2>
-      <div>
-        <p>
-          See the <a href="https://en.wikipedia.org/wiki/Bentley%E2%80%93Ottmann_algorithm">Bentley–Ottmann
-            algorithm</a>
-          on Wikipedia for more information.
-        </p>
-        <p>
-
-        </p>
-      </div>
-      <div>
-        <video mute loop controls>
-          <source src="./assets/bentleyottmann.mp4" type="video/mp4">
-          <source src="https://f002.backblazeb2.com/file/hgeometry/bentleyottmann.mp4" type="video/mp4">
-          <source src="https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/bentleyottmann.mp4"
-            type="video/mp4">
-        </video>
-      </div>
-    </article>
   </main>
 
   <footer>
