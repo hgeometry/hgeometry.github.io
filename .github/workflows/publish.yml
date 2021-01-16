@@ -20,7 +20,7 @@ jobs:
 
     - name: Build site
       run: |
-        parcel build index.html
+        parcel build index.pug
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
