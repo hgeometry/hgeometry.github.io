@@ -1,0 +1,137 @@
+extends layout.pug
+
+mixin video(file)
+  // Fetch the file locally if possible. Otherwise try BackBlaze. If everything fails,
+  // go for GitHub LFS object. LFS bandwidth is limited to 1GiB/month.
+  video(mute='' loop='' controls='')
+    source(src='./assets/'+file type='video/mp4')
+    source(src='https://f002.backblazeb2.com/file/hgeometry/'+file type='video/mp4')
+    source(src='https://github.com/hgeometry/hgeometry.github.io/raw/main/assets/'+file type='video/mp4')
+
+block content
+  article
+    b HGeometry
+    |
+    | is a library for computing with geometric objects in Haskell. It defines basic geometric types
+    | and primitives, and implements many algorithms, including:
+    #algo-list
+      div \( O(n \log n) \)
+      div
+        a(href='#convex-hull') Convex Hull.
+      div \( O(k) \)
+      div
+        a(href='#fast-visibility') Visibility polygon.
+      div \( O(n) \)
+      div
+        a(href='https://en.wikipedia.org/wiki/Smallest-circle_problem') Smallest enclosing disk.
+      div  \( O(n \log n) \) 
+      div
+        a(href='https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm')
+          | Douglas Peucker&apos;s simplification algorithm.
+      div \( O(\log n) \) 
+      div
+        a(href='https://en.wikipedia.org/wiki/Extreme_point') Convex extremes and tangents.
+      div \( O(n \log n) \)
+      div
+        a(href='https://en.wikipedia.org/wiki/Delaunay_triangulation') Delaunay triangulation.
+      div \( O(n \log n) \)
+      div
+        a(href='https://en.wikipedia.org/wiki/Euclidean_minimum_spanning_tree')
+          | Euclidean Minimum Spanning Tree.
+      div \( O(1/\varepsilon^dn\log n) \)
+      div
+        a(href='https://en.wikipedia.org/wiki/Well-separated_pair_decomposition')
+          | Well-Separated pair decomposition.
+      div \( O(n+m) \)
+      div
+        a(href='https://en.wikipedia.org/wiki/Minkowski_addition') Minkowski sum.
+      div \( O(n\log n) \)
+      div
+        a(href='#closest-pair') Closest pair of points.
+      div \( O(nm) \)
+      div
+        a(href='https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance') Fr&eacute;chet distance.
+      div \( O(n) \)
+      div
+        a(href='#shortest-path') Single-source shortest path tree.
+    | Geometry is inherently visual and the rest of this website is
+    | devoted to illustrations and animations that highlight how the various algorithms work.
+  article#inflate.feature
+    h2 \( O(n) \) Inflate
+    div
+      p
+        | Polygons can be inflated like a balloon. A partially inflated polygon is smaller than the original
+        | polygon and have the property that each point on the wavefront are equidistant to the point of origin.
+        | Increasing the distance to the wavefront gives the impression of the polygon spreading like
+        | water in a mold.
+    div
+      +video('inflate.mp4')
+  article#fast-visibility.feature
+    h2 \( O(k) \) Visibility
+    div
+      p
+        | Finding the visible parts of a polygon from a given point is a cornerstone in
+        | computational geometry. There exists many algorithms but one is of special interest.
+        | This algorithm is output-sensitive, meaning that the runtime is dependent not on
+        | the size of the input polygon but on the size of the visible area.
+      p
+        | The animation shows how a polygon is first triangulated, then triangles are processed
+        | and marked in grey while the visibility polygon is outlined in green. The number of
+        | processed triangles is limited to those that intersect the final visibility polygon.
+    div
+      +video('fast_visibility.mp4')
+  article#convex-hull.feature
+    h2 \( O(n \log n) \) Convex Hull
+    div
+      p
+        | A convex hull of a set of points is the smallest convex polygon that contains it.
+        | You can think of it as a rubber band that stretches around a collection of points.
+      p
+        | So, how is this useful? Well, there are many fast algorithms that only work on convex
+        | polygons. For example, there&apos;s a fast algorithm for finding the two corners that are
+        | furthest away from each other. By first finding the convex hull, we can then use the
+        | fast algorithm to find the two extreme points in the set.
+      p
+        a(href='https://en.wikipedia.org/wiki/Convex_hull') Wikipedia article.
+    div
+      +video('convexhull.mp4')
+  article#closest-pair.feature
+    h2 \( O(n \log n) \) Closest Pair
+    div
+      p
+        | The closest pair problem for points in the Euclidean plane was among the first geometric
+        | problems that were treated at the origins of the systematic study of the computational
+        | complexity of geometric algorithms.
+      p
+        a(href='https://en.wikipedia.org/wiki/Closest_pair_of_points_problem') Wikipedia article.
+    div
+      +video('closestpair.mp4')
+  article#bentleyottmann.feature
+    h2 \( O((n+k) \log n) \) Line segment intersection
+    div
+      p
+        | Using a brute-force search, finding intersections of \(n\) lines would take \(O(n^2)\) time.
+        | Since we often want to find intersections, the Bentley-Ottmann algorithm which significantly
+        | improved the efficiency.
+      p
+        | When is this used? Well, to give good error messages, HGeometry will check polygons
+        | for self-intersections immediately when they&apos;re created. This leads to mistakes
+        | being spotted sooner rather than later.
+      p
+        a(href='https://en.wikipedia.org/wiki/Bentley%E2%80%93Ottmann_algorithm') Wikipedia article
+    div
+      +video('bentleyottmann.mp4')
+  article#shortest-path.feature
+    h2 \( O(n) \) Single-Source Shortest Path
+    div
+      p
+        | Finding the shortest path from a specific corner to all other corners
+        | is a key step in many other algorithms. It&apos;s used for computing visibility
+        | polygons, inflated polygons, and minimum-link distances.
+      p
+        | The animation shows the shortest internal path from a green point on the side of a polygon
+        | to all other corner points.
+      | DOI: 10.1007/BF01840360
+      br
+    div
+      +video('multi.mp4')

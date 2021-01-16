@@ -1,0 +1,140 @@
+extends layout.pug
+
+mixin mark(boolean = '?')
+  if boolean == '?'
+    | &quest;
+  else
+    if boolean
+      | &check;
+    else
+      | &cross;
+
+mixin algo(complexity, name, hgeo, cgal, description)
+  details(class={'has-content': block})
+    summary
+      div
+        div= complexity
+        div= name
+        div
+          +mark(hgeo)
+        div
+          +mark(cgal)
+    if block
+      div.content
+        block
+
+block content
+  article
+    h2 HGeometry vs CGAL
+    | Comprehensive algorithm list and comparison against the
+    |
+    a(href="https://cgal.org/") CGAL
+    |
+    | project.
+
+  article
+    h2 Random Polygon Generation
+    .feature-compare
+      div
+        div
+        div
+        div HGeometry
+        div CGAL
+      +algo('\\( O(n \\log n) \\)', 'Random Convex Polygon', true, false)
+      +algo('\\( O(n \\log n) \\)', 'Random Monotone Polygon', false, false)
+      +algo('\\( O(n \\log n) \\)', 'Random Star-shaped Polygon', false, false)
+      +algo('\\( O(?) \\)',         '2-Opt Moves', false, false)
+        p
+          a(href='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.47.6026&rep=rep1&type=pdf')
+            | Heuristics For The Generation of Random Polygons.
+      +algo('\\( O(?) \\)',         'Random Growth', false, false)
+      +algo('\\( O(?) \\)',         'Skeleton holes', false, false)
+
+  article
+    h2 2D Interpolation
+    .feature-compare
+      div
+        div
+        div
+        div HGeometry
+        div CGAL
+      +algo('\\( O(n) \\)',         'Linear')
+      +algo('\\( O(?) \\)',         'Angular')
+      +algo('\\( O(?) \\)',         'Edge+angle')
+        p 2-D shape blending: An intrinsic solution to the vertex path problem
+        p DOI: 10.1145/166117.166118
+      +algo('\\( O(?) \\)',         'Least-work')
+        p
+          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.121.3736&rank=1')
+            | A physically based approach to 2-D shape blending (1992)
+      +algo('\\( O(?) \\)',         'Star-skeleton')
+        p
+          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.116.3675')
+            | Shape Blending Using the Star-Skeleton Representation (1995)
+      +algo('\\( O(?) \\)',         'As-rigid-as-possible')
+        p
+          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.150.1531&rank=1')
+            | As-rigid-as-possible shape interpolation (2000)
+      +algo('\\( O(?) \\)',         'Guaranteed intersection-free')
+        p
+          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.25.4852&rank=1')
+            | Guaranteed Intersection-Free Polygon Morphing (2001)
+
+
+  article
+    h2 Uncategorized
+    .feature-compare
+      div
+        div
+        div
+        div HGeometry
+        div CGAL
+      
+      +algo('\\( O(n) \\)',         'Polygon Convex Hull', true, true)
+      +algo('\\( O(n \\log n) \\)', 'Point Set Convex Hull', true, true)
+      +algo('\\( O(n \\log n) \\)', 'Triangulation', true)
+      +algo('\\( O(n) \\)',         'Linear Triangulation', false, false)
+      +algo('\\( O(n^2) \\)',       'CDT')
+      +algo('\\( O(n \\log n) \\)', 'Delaunay Triangulation')
+      +algo('\\( O(n) \\)',         'Visibility', false, true)
+      +algo('\\( O(n^2) \\)',       'Naive Visibility', false, false)
+      +algo('\\( O(n \\log n) \\)', 'Visibility', false, true)
+      +algo('\\( O(k) \\)',         'Output-sensitive visibility', false, true)
+      +algo('\\( O(n) \\)',         'Minimum-link path', false, false)
+      +algo('\\( O(n) \\)',         'Visibility window', false, false)
+      +algo('\\( O(?) \\)',         'Compatible triangulation', false, false)
+      +algo('\\( O(\\log n) \\)',   'Point in Convex?', true)
+      +algo('\\( O(\\log n) \\)',   'Convex extremes', true)
+      +algo('\\( O(n) \\)',         'Point in Polygon?', true)
+      +algo('\\( O(n) \\)',         'Single-source shortest path', true)
+      +algo('\\( O(n) \\)',         'Douglas Peucker\'s simplification', true)
+      +algo('\\( O(n \\log n) \\)', 'Euclidean Minimum Spanning Tree', true)
+      +algo('\\( O(n + m) \\)',     'Convex Minkowski sum', true)
+      +algo('\\( O(n \\log n) \\)', '2D closest pair', true)
+      +algo('\\( O(\\log n) \\)',   'Planar point location', false, true)
+      +algo('\\( O(nm) \\)',        'Boolean operations', false)
+        p
+          a(href='https://www.inf.usi.ch/hormann/papers/Foster.2019.CSP.pdf')
+            | Clipping simple polygons with degenerate intersections.
+        p DOI: 10.1016/j.cagx.2019.100007
+      +algo('\\( O((n+k) \\log n) \\)', 'Boolean operations', false)
+        p A simple algorithm for Boolean operations on polygons.
+        p DOI: 10.1016/j.advengsoft.2013.04.004
+      +algo('\\( O(n \\log n) \\)', 'Shortest path', false, false)
+        p
+          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.2037&rank=2')
+            | An Optimal Algorithm for Euclidean Shortest Paths in the Plane.
+      +algo('\\( O(\\log n + \\log m) \\)', 'Convex intersection', false, false)
+        p
+          a(href='https://arxiv.org/pdf/1312.1001.pdf')
+            | Optimal detection of intersections between convex polyhedra.
+      +algo('\\( O(nr^2) \\)', 'Optimal Convex Decomposition', false, false)
+      +algo('\\( O(nr) \\)', 'ACD Lien/Amato', false)
+        p
+          a(href='http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.477&rep=rep1&type=pdf')
+            | Approximate Convex Decomposition of Polygons.
+      +algo('\\( O(n) \\)', 'ACD Hertel/Mehlhorn', false)
+        p
+          a(href='https://core.ac.uk/download/pdf/82318242.pdf')
+            | Fast Triangulation of the Plane with Respect to Simple Polygons
+        p DOI: 10.1016/S0019-9958(85)80044-9

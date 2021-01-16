@@ -1,3 +1,3 @@
 # hgeometry.github.io
 
-Run with: parcel index.html
+Run with: parcel index.pug
