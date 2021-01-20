@@ -1,5 +1,27 @@
 extends layout.pug
 
+mixin refs(args)
+  if args && args.paper
+    p
+      | Paper:
+      |
+      a(href=args.paper)= args.paperTitle
+  if args && args.scihub
+    p
+      | SciHub:
+      |
+      a(href="https://sci-hub.do/"+args.scihub)= args.paperTitle
+  if args && args.doi
+    p 
+      | DOI:
+      |
+      a(href="https://doi.org/" + args.doi)= args.doi
+  if args && args.wiki
+    p
+      | Wikipedia article:
+      |
+      a(href=args.wiki)= args.wiki
+
 mixin mark(boolean = '?')
   if boolean == '?'
     | &quest;
@@ -13,24 +35,28 @@ mixin algo(complexity, name, hgeo, cgal, description)
   details(class={'has-content': block})
     summary
       div
-        div= complexity
         div= name
+        div= '\\(' + complexity + '\\)'
         div
           +mark(hgeo)
-        div
-          +mark(cgal)
+        //- div
+        //-   +mark(cgal)
     if block
       div.content
         block
 
 block content
   article
-    h2 HGeometry vs CGAL
-    | Comprehensive algorithm list and comparison against the
-    |
-    a(href="https://cgal.org/") CGAL
-    |
-    | project.
+    h2 What is Computational Geometry?
+    p
+      | Richard Feynman, a physicist and Nobel laureate, famously
+      | asked for a "<cite>map of the cat.</cite>" He was attending a biology class
+      | at a whim and need information about a cat's anatomy but didn't
+      | know any of the terminology. Well, this page is a map of
+      | computational geometry.
+    p 
+      | To keep the number of algorithms managable, foundational concepts are
+      | favoured over heuristics.
 
   article
     h2 Random Polygon Generation
@@ -39,16 +65,32 @@ block content
         div
         div
         div HGeometry
-        div CGAL
-      +algo('\\( O(n \\log n) \\)', 'Random Convex Polygon', true, false)
-      +algo('\\( O(n \\log n) \\)', 'Random Monotone Polygon', false, false)
-      +algo('\\( O(n \\log n) \\)', 'Random Star-shaped Polygon', false, false)
-      +algo('\\( O(?) \\)',         '2-Opt Moves', false, false)
-        p
-          a(href='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.47.6026&rep=rep1&type=pdf')
-            | Heuristics For The Generation of Random Polygons.
-      +algo('\\( O(?) \\)',         'Random Growth', false, false)
-      +algo('\\( O(?) \\)',         'Skeleton holes', false, false)
+      +algo('O(n \\log n)', 'Random Convex Polygon', true, false)
+        +refs(
+          {paper: "http://cglab.ca/~sander/misc/ConvexGeneration/convex.html"
+          ,paperTitle: "Generating Random Convex Polygons"
+          })
+      +algo('O(n \\log n)', 'Random Monotone Polygon', true, false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.47.6026&rep=rep1&type=pdf"
+          ,paperTitle: "Heuristics For The Generation of Random Polygons."
+          })
+      +algo('O(n \\log n)', 'Random Star-shaped Polygon', false, false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.47.6026&rep=rep1&type=pdf"
+          ,paperTitle: "Heuristics For The Generation of Random Polygons."
+          })
+      +algo('O(?)',         '2-Opt Moves', false, false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.47.6026&rep=rep1&type=pdf"
+          ,paperTitle: "Heuristics For The Generation of Random Polygons."
+          })
+      +algo('O(?)',         'Random Growth', false, false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.47.6026&rep=rep1&type=pdf"
+          ,paperTitle: "Heuristics For The Generation of Random Polygons."
+          })
+      +algo('O(?)',         'Skeleton holes', false, false)
 
   article
     h2 2D Interpolation
@@ -57,29 +99,142 @@ block content
         div
         div
         div HGeometry
-        div CGAL
-      +algo('\\( O(n) \\)',         'Linear')
-      +algo('\\( O(?) \\)',         'Angular')
-      +algo('\\( O(?) \\)',         'Edge+angle')
-        p 2-D shape blending: An intrinsic solution to the vertex path problem
-        p DOI: 10.1145/166117.166118
-      +algo('\\( O(?) \\)',         'Least-work')
-        p
-          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.121.3736&rank=1')
-            | A physically based approach to 2-D shape blending (1992)
-      +algo('\\( O(?) \\)',         'Star-skeleton')
-        p
-          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.116.3675')
-            | Shape Blending Using the Star-Skeleton Representation (1995)
-      +algo('\\( O(?) \\)',         'As-rigid-as-possible')
-        p
-          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.150.1531&rank=1')
-            | As-rigid-as-possible shape interpolation (2000)
-      +algo('\\( O(?) \\)',         'Guaranteed intersection-free')
-        p
-          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.25.4852&rank=1')
-            | Guaranteed Intersection-Free Polygon Morphing (2001)
+        //- div CGAL
+      +algo('O(n)',         'Linear')
+      +algo('O(?)',         'Angular')
+      +algo('O(?)',         'Edge+angle')
+        +refs(
+          {paper: "https://www.researchgate.net/profile/Thomas_Sederberg/publication/220721162_2-D_shape_blending_An_intrinsic_solution_to_the_vertex_path_problem/links/0a85e52ec8be60e154000000/2-D-shape-blending-An-intrinsic-solution-to-the-vertex-path-problem.pdf"
+          ,paperTitle: "2-D shape blending: An intrinsic solution to the vertex path problem"
+          ,scihub: "10.1145/166117.166118"
+          ,doi: "10.1145/166117.166118"
+          })
+      +algo('O(?)',         'Least-work')
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.121.3736&rank=1"
+          ,paperTitle: "A physically based approach to 2-D shape blending (1992)"
+          })
+      +algo('O(?)',         'Star-skeleton')
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.116.3675"
+          ,paperTitle: "Shape Blending Using the Star-Skeleton Representation (1995)"
+          })
+      +algo('O(?)',         'As-rigid-as-possible')
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.150.1531&rank=1"
+          ,paperTitle: "As-rigid-as-possible shape interpolation (2000)"
+          })
+      +algo('O(?)',         'Guaranteed intersection-free')
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.25.4852&rank=1"
+          ,paperTitle: "Guaranteed Intersection-Free Polygon Morphing (2001)"
+          })
 
+
+  article
+    h2 Visibility
+    .feature-compare
+      div
+        div
+        div
+        div HGeometry
+        //- div CGAL
+      +algo('O(n)',         'Linear Visibility', false, true)
+      +algo('O(n^2)',       'Naive Visibility', false, false)
+      +algo('O(n \\log n)', 'Sweep Visibility', false, true)
+      +algo('O(k)',         'Output-sensitive visibility', false, true)
+      +algo('O(n)',         'Minimum-link path', false, false)
+      +algo('O(n)',         'Visibility window', false, false)
+      +algo('O(n)',         'Single-source shortest path', true)
+      +algo('O(n \\log n)', 'Shortest path', false, false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.2037&rank=2"
+          ,paperTitle: "An Optimal Algorithm for Euclidean Shortest Paths in the Plane"
+          })
+
+  article
+    h2 Convex related
+    .feature-compare
+      div
+        div
+        div
+        div HGeometry
+        //- div CGAL
+      +algo('O(n)',         'Polygon Kernel', false)
+        +refs(
+          {paper: "http://www.dtic.mil/get-tr-doc/pdf?AD=ADA056887"
+          ,paperTitle: "An Optimal Algorithm For Finding The Kernel Of A Polygon (1979)"
+          ,scihub: "10.1145/322139.322142"
+          ,doi: "10.1145/322139.322142"
+          ,wiki: "https://en.wikipedia.org/wiki/Star-shaped_polygon"
+          ,wikiTitle: "Star-shaped Polygon"
+          })
+      +algo('O(n)',         'Polygon Convex Hull', true, true)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.512.9681&rep=rep1&type=pdf"
+          ,paperTitle: "Online Construction of the Convex Hull of a Simple Polyline"
+          ,wiki: "https://en.wikipedia.org/wiki/Convex_hull_of_a_simple_polygon"
+          ,wikiTitle: "Convex hull of a Simple Polygon"
+          })
+      +algo('O(n \\log n)', 'Point Set Convex Hull', true, true)
+      +algo('O(\\log n)',   'Convex point locator', true)
+      +algo('O(\\log n)',   'Convex extremes', true)
+      +algo('O(n + m)',     'Convex Minkowski sum', true)
+      +algo('O(\\log n + \\log m)', 'Convex intersection', false, false)
+        +refs(
+          {paper: "https://arxiv.org/pdf/1312.1001.pdf"
+          ,paperTitle: "Optimal detection of intersections between convex polyhedra"
+          })
+      +algo('O(nr^2)',      'Optimal Convex Decomposition', false, false)
+      +algo('O(nr)',        'ACD Lien/Amato', false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.477&rep=rep1&type=pdf"
+          ,paperTitle: "Approximate Convex Decomposition of Polygons"
+          })
+      +algo('O(n)',         'ACD Hertel/Mehlhorn', false)
+        +refs(
+          {paper: "https://core.ac.uk/download/pdf/82318242.pdf"
+          ,paperTitle: "Fast Triangulation of the Plane with Respect to Simple Polygons (1985)"
+          ,scihub: "10.1016/S0019-9958(85)80044-9"
+          ,doi: "10.1016/S0019-9958(85)80044-9"
+          })
+
+  article
+    h2 Triangulation
+    .feature-compare
+      div
+        div
+        div
+        div HGeometry
+        //- div CGAL
+      +algo('O(n \\log n)', 'Triangulation with holes', true)
+      +algo('O(n \\log^\\star n)', 'Triangulation without holes', false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.472.6973&rank=1"
+          ,paperTitle: "A simple and fast incremental randomized algorithm for computing trapezoidal decompositions and for triangulating polygons (1991)"
+          })      
+      +algo('O(n)',         'Linear Triangulation without holes', false, false)
+        +refs(
+          {paper: "https://link.springer.com/article/10.1007/BF02574703"
+          ,paperTitle: "Triangulating a simple polygon in linear time (1990)"
+          ,scihub: "10.1109/fscs.1990.89541"
+          ,doi: "10.1109/fscs.1990.89541"
+          })      
+      +algo('O(n^2)',       'Constrained Delaunay Triangulation', false)
+      +algo('O(n\\log n)',  'Constrained Delaunay Triangulation', false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.137.8264&rank=2"
+          ,paperTitle: "Constrained Delaunay triangulations (1989)"
+          })
+      +algo('O(n \\log n)', 'Delaunay Triangulation', true)
+        +refs(
+          {paper: "https://link.springer.com/article/10.1007%2FBF00977785"
+          ,paperTitle: "Two algorithms for constructing a Delaunay triangulation (1980)"
+          ,doi: "10.1007/BF00977785"
+          ,scihub: "10.1007/BF00977785"
+          })
+      
+      +algo('O(?)',         'Compatible triangulation', false, false)
 
   article
     h2 Uncategorized
@@ -88,53 +243,35 @@ block content
         div
         div
         div HGeometry
-        div CGAL
-      
-      +algo('\\( O(n) \\)',         'Polygon Convex Hull', true, true)
-      +algo('\\( O(n \\log n) \\)', 'Point Set Convex Hull', true, true)
-      +algo('\\( O(n \\log n) \\)', 'Triangulation', true)
-      +algo('\\( O(n) \\)',         'Linear Triangulation', false, false)
-      +algo('\\( O(n^2) \\)',       'CDT')
-      +algo('\\( O(n \\log n) \\)', 'Delaunay Triangulation')
-      +algo('\\( O(n) \\)',         'Visibility', false, true)
-      +algo('\\( O(n^2) \\)',       'Naive Visibility', false, false)
-      +algo('\\( O(n \\log n) \\)', 'Visibility', false, true)
-      +algo('\\( O(k) \\)',         'Output-sensitive visibility', false, true)
-      +algo('\\( O(n) \\)',         'Minimum-link path', false, false)
-      +algo('\\( O(n) \\)',         'Visibility window', false, false)
-      +algo('\\( O(?) \\)',         'Compatible triangulation', false, false)
-      +algo('\\( O(\\log n) \\)',   'Point in Convex?', true)
-      +algo('\\( O(\\log n) \\)',   'Convex extremes', true)
-      +algo('\\( O(n) \\)',         'Point in Polygon?', true)
-      +algo('\\( O(n) \\)',         'Single-source shortest path', true)
-      +algo('\\( O(n) \\)',         'Douglas Peucker\'s simplification', true)
-      +algo('\\( O(n \\log n) \\)', 'Euclidean Minimum Spanning Tree', true)
-      +algo('\\( O(n + m) \\)',     'Convex Minkowski sum', true)
-      +algo('\\( O(n \\log n) \\)', '2D closest pair', true)
-      +algo('\\( O(\\log n) \\)',   'Planar point location', false, true)
-      +algo('\\( O(nm) \\)',        'Boolean operations', false)
-        p
-          a(href='https://www.inf.usi.ch/hormann/papers/Foster.2019.CSP.pdf')
-            | Clipping simple polygons with degenerate intersections.
-        p DOI: 10.1016/j.cagx.2019.100007
-      +algo('\\( O((n+k) \\log n) \\)', 'Boolean operations', false)
-        p A simple algorithm for Boolean operations on polygons.
-        p DOI: 10.1016/j.advengsoft.2013.04.004
-      +algo('\\( O(n \\log n) \\)', 'Shortest path', false, false)
-        p
-          a(href='http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.2037&rank=2')
-            | An Optimal Algorithm for Euclidean Shortest Paths in the Plane.
-      +algo('\\( O(\\log n + \\log m) \\)', 'Convex intersection', false, false)
-        p
-          a(href='https://arxiv.org/pdf/1312.1001.pdf')
-            | Optimal detection of intersections between convex polyhedra.
-      +algo('\\( O(nr^2) \\)', 'Optimal Convex Decomposition', false, false)
-      +algo('\\( O(nr) \\)', 'ACD Lien/Amato', false)
-        p
-          a(href='http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.477&rep=rep1&type=pdf')
-            | Approximate Convex Decomposition of Polygons.
-      +algo('\\( O(n) \\)', 'ACD Hertel/Mehlhorn', false)
-        p
-          a(href='https://core.ac.uk/download/pdf/82318242.pdf')
-            | Fast Triangulation of the Plane with Respect to Simple Polygons
-        p DOI: 10.1016/S0019-9958(85)80044-9
+        //- div CGAL
+
+      +algo('O((n+k)\\log n)',  'Segment intersections', true)
+        +refs(
+          {wiki: "https://en.wikipedia.org/wiki/Bentley–Ottmann_algorithm"
+          ,wikiTitle: "Bentley–Ottmann algorithm"
+          })
+      +algo('O(n\\log n+k)',    'Segment intersections', false)
+        +refs(
+          {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.460.7188"
+          ,paperTitle: "An optimal algorithm for finding segments intersections (1995)"
+          ,doi: "10.1145/220279.220302"
+          })
+      +algo('O(n)',             'Douglas Peucker\'s simplification', true)
+      +algo('O(n \\log n)',     'Euclidean Minimum Spanning Tree', true)
+      +algo('O(n \\log n)',     '2D closest pair', true)
+      +algo('O(n)',             'Polygon point locator', true)
+      +algo('O(\\log n)',       'Planar point location', false, true)
+      +algo('O(nm)',            'Boolean operations', false)
+        +refs(
+          {paper: "https://www.inf.usi.ch/hormann/papers/Foster.2019.CSP.pdf"
+          ,paperTitle: "Clipping simple polygons with degenerate intersections"
+          ,scihub: "10.1016/j.cagx.2019.100007"
+          ,doi: "10.1016/j.cagx.2019.100007"
+          })
+      +algo('O((n+k) \\log n)', 'Boolean operations', false)
+        +refs(
+          {paper: "https://doi.org/10.1016/j.advengsoft.2013.04.004"
+          ,paperTitle: "A simple algorithm for Boolean operations on polygons."
+          ,scihub: "10.1016/j.advengsoft.2013.04.004"
+          ,doi: "10.1016/j.advengsoft.2013.04.004"
+          })
