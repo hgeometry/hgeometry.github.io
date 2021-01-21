@@ -120,8 +120,12 @@ article {
 
   @media @mobile-query {
     max-width    : 100%;
-    padding-left : 20px;
-    padding-right: 20px;
+    padding-left : 0px;
+    padding-right: 0px;
+    p {
+      padding-left : 20px;
+      padding-right: 20px;
+    }
   }
 
   &:first-of-type {
@@ -240,11 +244,14 @@ details summary::-webkit-details-marker {
 
   details:nth-child(odd) {
     background   : @grey;
-    border-radius: @table_radius;
+    @media not @mobile-query {
+      border-radius: @table_radius;
+    }
   }
 
   details {
     padding-left  : 0.5em;
+    padding-right  : 0.5em;
     padding-top   : 0.5em;
     padding-bottom: 0.5em;
   }
@@ -253,7 +260,7 @@ details summary::-webkit-details-marker {
   &>div {
     display              : grid;
     // grid-template-columns: 10em 3fr 1fr;
-    grid-template-columns: auto auto 7em;
+    grid-template-columns: auto auto 2em;
 
     div:nth-child(1) {
       // text-align   : right;

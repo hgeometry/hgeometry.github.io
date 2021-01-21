@@ -10,10 +10,11 @@ mixin video(file)
 
 block content
   article
-    b HGeometry
-    |
-    | is a library for computing with geometric objects in Haskell. It defines basic geometric types
-    | and primitives, and implements many algorithms, including:
+    p
+      b HGeometry
+      |
+      | is a library for computing with geometric objects in Haskell. It defines basic geometric types
+      | and primitives, and implements many algorithms, including:
     #algo-list
       div \( O(n \log n) \)
       div
@@ -54,8 +55,9 @@ block content
       div \( O(n) \)
       div
         a(href='#shortest-path') Single-source shortest path tree.
-    | Geometry is inherently visual and the rest of this website is
-    | devoted to illustrations and animations that highlight how the various algorithms work.
+    p
+      | Geometry is inherently visual and the rest of this website is
+      | devoted to illustrations and animations that highlight how the various algorithms work.
   article#inflate.feature
     h2 \( O(n) \) Inflate
     div

@@ -20,7 +20,7 @@ mixin refs(args)
     p
       | Wikipedia article:
       |
-      a(href=args.wiki)= args.wiki
+      a(href=args.wiki)= args.wikiTitle
 
 mixin mark(boolean = '?')
   if boolean == '?'
@@ -56,15 +56,16 @@ block content
       | computational geometry.
     p 
       | To keep the number of algorithms managable, foundational concepts are
-      | favoured over heuristics.
+      | favoured over heuristics. The cross or checkmark indicate whether the
+      | algorithm has been implemented in HGeometry.
 
   article
     h2 Random Polygon Generation
     .feature-compare
-      div
-        div
-        div
-        div HGeometry
+      //- div
+      //-   div
+      //-   div
+      //-   div HGeometry
       +algo('O(n \\log n)', 'Random Convex Polygon', true, false)
         +refs(
           {paper: "http://cglab.ca/~sander/misc/ConvexGeneration/convex.html"
@@ -95,10 +96,10 @@ block content
   article
     h2 2D Interpolation
     .feature-compare
-      div
-        div
-        div
-        div HGeometry
+      //- div
+      //-   div
+      //-   div
+      //-   div HGeometry
         //- div CGAL
       +algo('O(n)',         'Linear')
       +algo('O(?)',         'Angular')
@@ -134,10 +135,10 @@ block content
   article
     h2 Visibility
     .feature-compare
-      div
-        div
-        div
-        div HGeometry
+      //- div
+      //-   div
+      //-   div
+      //-   div HGeometry
         //- div CGAL
       +algo('O(n)',         'Linear Visibility', false, true)
       +algo('O(n^2)',       'Naive Visibility', false, false)
@@ -155,10 +156,10 @@ block content
   article
     h2 Convex related
     .feature-compare
-      div
-        div
-        div
-        div HGeometry
+      //- div
+      //-   div
+      //-   div
+      //-   div HGeometry
         //- div CGAL
       +algo('O(n)',         'Polygon Kernel', false)
         +refs(
@@ -202,10 +203,10 @@ block content
   article
     h2 Triangulation
     .feature-compare
-      div
-        div
-        div
-        div HGeometry
+      //- div
+      //-   div
+      //-   div
+      //-   div HGeometry
         //- div CGAL
       +algo('O(n \\log n)', 'Triangulation with holes', true)
       +algo('O(n \\log^\\star n)', 'Triangulation without holes', false)
@@ -239,10 +240,10 @@ block content
   article
     h2 Uncategorized
     .feature-compare
-      div
-        div
-        div
-        div HGeometry
+      //- div
+      //-   div
+      //-   div
+      //-   div HGeometry
         //- div CGAL
 
       +algo('O((n+k)\\log n)',  'Segment intersections', true)
