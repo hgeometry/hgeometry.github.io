@@ -62,10 +62,6 @@ block content
   article
     h2 Random Polygon Generation
     .feature-compare
-      //- div
-      //-   div
-      //-   div
-      //-   div HGeometry
       +algo('O(n \\log n)', 'Random Convex Polygon', true, false)
         +refs(
           {paper: "http://cglab.ca/~sander/misc/ConvexGeneration/convex.html"
@@ -96,11 +92,6 @@ block content
   article
     h2 2D Interpolation
     .feature-compare
-      //- div
-      //-   div
-      //-   div
-      //-   div HGeometry
-        //- div CGAL
       +algo('O(n)',         'Linear')
       +algo('O(?)',         'Angular')
       +algo('O(?)',         'Edge+angle')
@@ -135,18 +126,53 @@ block content
   article
     h2 Visibility
     .feature-compare
-      //- div
-      //-   div
-      //-   div
-      //-   div HGeometry
-        //- div CGAL
       +algo('O(n)',         'Linear Visibility', false, true)
+        +refs(
+          {paper: "https://link.springer.com/article/10.1007%2FBF01937271"
+          ,paperTitle: "Corrections to Lee's visibility polygon algorithm (1987)"
+          ,scihub: "10.1007/BF01937271"
+          ,doi: "10.1007/BF01937271"
+          })
       +algo('O(n^2)',       'Naive Visibility', false, false)
+        +refs(
+          {wiki: "https://en.wikipedia.org/wiki/Visibility_polygon#Naive_algorithms"
+          ,wikiTitle: "Visibility polygon"
+          })
       +algo('O(n \\log n)', 'Sweep Visibility', false, true)
+        +refs(
+          {paper: "https://dl.acm.org/doi/10.1145/10515.10517"
+          ,paperTitle: "Worst-case optimal algorithms for constructing visibility polygons with holes (1986)"
+          ,scihub: "10.1145/10515.10517"
+          ,doi: "10.1145/10515.10517"
+          })
       +algo('O(k)',         'Output-sensitive visibility', false, true)
+        +refs(
+          {paper: "https://link.springer.com/article/10.1007/BF01840360"
+          ,paperTitle: "Linear-time algorithms for visibility and shortest path problems inside triangulated simple polygons (1987)"
+          ,scihub: "10.1007/BF01840360"
+          ,doi: "10.1007/BF01840360"
+          })
       +algo('O(n)',         'Minimum-link path', false, false)
+        +refs(
+          {paper: "https://www.sciencedirect.com/science/article/abs/pii/0734189X86901271"
+          ,paperTitle: "A linear time algorithm for minimum link paths inside a simple polygon (1986)"
+          ,scihub: "10.1016/0734-189X(86)90127-1"
+          ,doi: "10.1016/0734-189X(86)90127-1"
+          })
       +algo('O(n)',         'Visibility window', false, false)
+        +refs(
+          {paper: "https://www.sciencedirect.com/science/article/abs/pii/0734189X86901271"
+          ,paperTitle: "A linear time algorithm for minimum link paths inside a simple polygon (1986)"
+          ,scihub: "10.1016/0734-189X(86)90127-1"
+          ,doi: "10.1016/0734-189X(86)90127-1"
+          })
       +algo('O(n)',         'Single-source shortest path', true)
+        +refs(
+          {paper: "https://link.springer.com/article/10.1007/BF01840360"
+          ,paperTitle: "Linear-time algorithms for visibility and shortest path problems inside triangulated simple polygons (1987)"
+          ,scihub: "10.1007/BF01840360"
+          ,doi: "10.1007/BF01840360"
+          })
       +algo('O(n \\log n)', 'Shortest path', false, false)
         +refs(
           {paper: "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.2037&rank=2"
@@ -156,11 +182,6 @@ block content
   article
     h2 Convex related
     .feature-compare
-      //- div
-      //-   div
-      //-   div
-      //-   div HGeometry
-        //- div CGAL
       +algo('O(n)',         'Polygon Kernel', false)
         +refs(
           {paper: "http://www.dtic.mil/get-tr-doc/pdf?AD=ADA056887"
