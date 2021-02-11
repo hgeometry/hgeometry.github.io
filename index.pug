@@ -135,6 +135,20 @@ block content
         a(href='https://en.wikipedia.org/wiki/Bentley%E2%80%93Ottmann_algorithm') Wikipedia article
     div
       +video('bentleyottmann.mp4')
+  article#zhashing.feature
+    h2 Fast Z-Hashing Triangulation
+    div
+      p
+        | Finding points inside an arbitrary bounding box is made significantly
+        | faster with Z-hashing. By first sorting a polygon's vertices by their
+        | z-hash, the polygon can be triangulated in near linear time. While
+        | other algorithms offer stronger guarantees about worst-case behavior,
+        | z-order hashing has the lowest constant-factor overhead and is, in practice,
+        | the fastest known triangulation algorithm.
+      p
+        a(href='https://en.wikipedia.org/wiki/Z-order_curve') Wikipedia article
+    div
+      +video('zhashing.mp4')
   article#shortest-path.feature
     h2 \( O(n) \) Single-Source Shortest Path
     div
