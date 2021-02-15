@@ -20,7 +20,7 @@ jobs:
 
     - name: Build site
       run: |
-        parcel build index.pug
+        parcel build index.pug --no-minify
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
