@@ -20,6 +20,7 @@ jobs:
 
     - name: Build site
       run: |
+        npm install
         parcel build index.pug
 
     - name: Deploy 🚀
