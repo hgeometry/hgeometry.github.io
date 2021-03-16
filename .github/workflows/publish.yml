@@ -21,7 +21,7 @@ jobs:
     - name: Build site
       run: |
         npm install
-        parcel build index.pug
+        parcel build index.pug --no-optimize
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
